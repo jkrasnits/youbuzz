@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>YouBuzz</title>
+		<title>YouBuzz Result</title>
 		<meta charset="utf-8">
    		<meta http-equiv="X-UA-Compatible" content="IE=edge">
    	 	<meta name="viewport" content="width=device-width, initial-scale=1.0", minimal-ui>
@@ -16,23 +16,22 @@
 	</head>
 		<body>
 		</div>
-		<div class="beginning">
-			<div class="grid">
-		<h1 class="animated slideInDown">You<span class="span">Buzz</span></h1>
-		<h3 class="animated bounceIn">A different kind of buzz</h3>
-		<div class="box">
-				</div>
+		<div class="middle2">
+			<div class="mix">
+			<h3>You<span class="span">Buzz</span></h3><img class="top" src="/static/buzz.png"></img>
+		</div>
+						<div class="grid">
 			</div>
 		</div>
 		<div class="middle">
-			<form action="/" method="POST">
-				<input type="text" autofocus="autofocus" id="input" name="text" placeholder="Paste a URL here"><input type="submit" value="Submit" style="float: right; width:20%;height:32px;font-family:'Work Sans', sans-serif;font-weight:700;color:rgb(9,9,25);background:rgb(231,232,233); border-top: 1px solid rgb(9,9,25); border-bottom: 1px solid rgb(9,9,25);">
-				<img src="/static/Untitled-1.png"></img>
-			</form>
+			<div class="bar">
+					<h1>{{title}}</h1>
+			</div>
+			<img src="{{link}}"></img>
 		</div>
 		<div class="bottom">
 			<div class="grid">
-			<p>Jason Krasnits & Sam Goldfield. This was buzz. 2015. Don't sue.</p>
+			<p>Jason Krasnits &amp; Sam Goldfield. This was buzz. 2015. Don't sue.</p>
 		</div>
 		</div>
 		</body>

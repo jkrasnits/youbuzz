@@ -12,15 +12,18 @@ def my_form():
 
 @app.route('/', methods=['POST'])
 def my_form_post():
+	print("passed")
 	# import pdb; pdb.set_trace()
 	m = sujmarkov.Markov(n=2)
 	link = request.form['text']
+	print(link)
+
 	clarifaiHeaders = {'Authorization': secrets.CLARIFAI_AUTH }
 	clarifaiData = requests.get('https://api.clarifai.com/v1/tag/?url='+link, headers=clarifaiHeaders)
 	clarifaiParse_data = clarifaiData.json()
 	clarifaiClasses = clarifaiParse_data['results'][0]['result']['tag']['classes']
-
-	print("passed clarifai")
+	print(clarifaiClasses)
+	
 
 	with open('corpus.txt') as f:
 	    for line in f:
@@ -28,19 +31,19 @@ def my_form_post():
 
 	generatedTitle = []
 
-	while len(generatedTitle)<8:
+	while len(generatedTitle)<12 or len(generatedTitle)>16:
 		generatedTitle = m.generate()
 
 	number = random.randint(1, len(generatedTitle)-1)
 	generatedTitle[number] = clarifaiClasses[0]	
 	number = random.randint(1, len(generatedTitle)-1)
 	generatedTitle[number] = clarifaiClasses[1]
-	if len(generatedTitle) >= 10:
-		number = random.randint(1, len(generatedTitle)-1)
-		generatedTitle[number] = clarifaiClasses[2]
+	number = random.randint(1, len(generatedTitle)-1)
+	generatedTitle[number] = clarifaiClasses[2]
 
-	return " ".join(generatedTitle)+"   "+link
+	return render_template("result.html", title=" ".join(generatedTitle), link=link)
+	#return " ".join(generatedTitle)+"   "+link
     
 
 if __name__ == '__main__':
-	app.run()
+	app.run(debug=True)
